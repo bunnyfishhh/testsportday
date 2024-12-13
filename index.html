@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กีฬาสี กฟฉ.1 ประจำปี 2567</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .score-btn {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+        }
+        body {
+            background: linear-gradient(to bottom, #ffd1dc, #ffe4e1);
+            color: #4a4a4a;
+        }
+        .bg-theme {
+            background: linear-gradient(135deg, #ff7eb3, #ff9ebb);
+            color: white;
+        }
+        .rounded-shadow {
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .button-pink {
+            background-color: #ff85a2;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .button-pink:hover {
+            background-color: #ff6086;
+            box-shadow: 0 4px 12px rgba(255, 96, 134, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="bg-theme rounded-shadow p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold text-center w-full">กีฬาสี กฟฉ.1 ประจำปี 2567</h1>
+                <button onclick="resetAll()" class="button-pink px-4 py-2 rounded">รีเซ็ต</button>
+            </div>
+
+            <!-- เลือกประเภทกีฬา -->
+            <div class="mb-6">
+                <div class="flex flex-wrap justify-center gap-2 mb-4">
+                    <button onclick="showTab('football')" class="button-pink px-4 py-2 rounded">ฟุตบอล</button>
+                    <button onclick="showTab('badminton')" class="button-pink px-4 py-2 rounded">แบดมินตัน</button>
+                    <button onclick="showTab('tabletennis')" class="button-pink px-4 py-2 rounded">ปิงปอง</button>
+                </div>
+            </div>
+
+            <!-- ฟุตบอล -->
+            <div id="football" class="tab-content active">
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <input type="text" id="football-team1-name" value="ทีม 1" class="border rounded w-full text-center mb-2">
+                        <div id="football-team1-score" class="text-4xl mb-4">0</div>
+                        <button onclick="updateScore('football', 'team1', 1)" class="score-btn button-pink">+</button>
+                        <button onclick="updateScore('football', 'team1', -1)" class="score-btn button-pink">-</button>
+                    </div>
+                    <div class="text-center text-2xl flex items-center justify-center">VS</div>
+                    <div class="text-center">
+                        <input type="text" id="football-team2-name" value="ทีม 2" class="border rounded w-full text-center mb-2">
+                        <div id="football-team2-score" class="text-4xl mb-4">0</div>
+                        <button onclick="updateScore('football', 'team2', 1)" class="score-btn button-pink">+</button>
+                        <button onclick="updateScore('football', 'team2', -1)" class="score-btn button-pink">-</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- แบดมินตัน -->
+            <div id="badminton" class="tab-content">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="text-center">
+                        <input type="text" id="badminton-team1-name" value="ทีม 1" class="border rounded w-full text-center mb-2">
+                        <div id="badminton-team1-score" class="text-4xl mb-4">0</div>
+                        <button onclick="updateScore('badminton', 'team1', 1)" class="score-btn button-pink">+</button>
+                        <button onclick="updateScore('badminton', 'team1', -1)" class="score-btn button-pink">-</button>
+                    </div>
+                    <div class="text-center">
+                        <input type="text" id="badminton-team2-name" value="ทีม 2" class="border rounded w-full text-center mb-2">
+                        <div id="badminton-team2-score" class="text-4xl mb-4">0</div>
+                        <button onclick="updateScore('badminton', 'team2', 1)" class="score-btn button-pink">+</button>
+                        <button onclick="updateScore('badminton', 'team2', -1)" class="score-btn button-pink">-</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ปิงปอง -->
+            <div id="tabletennis" class="tab-content">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="text-center">
+                        <input type="text" id="tabletennis-team1-name" value="ทีม 1" class="border rounded w-full text-center mb-2">
+                        <div id="tabletennis-team1-score" class="text-4xl mb-4">0</div>
+                        <button onclick="updateScore('tabletennis', 'team1', 1)" class="score-btn button-pink">+</button>
+                        <button onclick="updateScore('tabletennis', 'team1', -1)" class="score-btn button-pink">-</button>
+                    </div>
+                    <div class="text-center">
+                        <input type="text" id="tabletennis-team2-name" value="ทีม 2" class="border rounded w-full text-center mb-2">
+                        <div id="tabletennis-team2-score" class="text-4xl mb-4">0</div>
+                        <button onclick="updateScore('tabletennis', 'team2', 1)" class="score-btn button-pink">+</button>
+                        <button onclick="updateScore('tabletennis', 'team2', -1)" class="score-btn button-pink">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scores = {
+            football: { team1: 0, team2: 0 },
+            badminton: { team1: 0, team2: 0 },
+            tabletennis: { team1: 0, team2: 0 }
+        };
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function updateScore(sport, team, points) {
+            const scoreElement = document.getElementById(`${sport}-${team}-score`);
+            scores[sport][team] = Math.max(0, scores[sport][team] + points);
+            scoreElement.textContent = scores[sport][team];
+        }
+
+        function resetAll() {
+            Object.keys(scores).forEach(sport => {
+                Object.keys(scores[sport]).forEach(team => {
+                    scores[sport][team] = 0;
+                    const scoreElement = document.getElementById(`${sport}-${team}-score`);
+                    if (scoreElement) scoreElement.textContent = '0';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
